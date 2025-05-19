@@ -1,0 +1,16 @@
+CREACION DEL ENTORNO
+py -3 -m venv .venv
+
+Activacion del entorno
+.venv\Scripts\activate
+
+INSTALACION DE DEPENDENCIAS EN EL ENTORNO
+pip install flask flask_sqlalchemy flask_marshmallow marshmallow marshmallow-sqlalchemy
+
+CREACION DE LOS MODULOS
+app.py
+models.py
+schemas.py
+
+RUN
+flask --app app run
