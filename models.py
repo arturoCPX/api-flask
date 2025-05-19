@@ -1,7 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 
+#Inicializamos SQLAlchemy
 db = SQLAlchemy()
 
+#Cracion del modelo con sus respectivos atos
 class Country(db.Model):
     country_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -10,6 +12,7 @@ class Country(db.Model):
     region = db.Column(db.String(50), nullable=True)
     subregion = db.Column(db.String(50), nullable=True)
 
+    #Devolver los datos en json y no objeto
     def to_dict(self):
         return {
             "country_id": self.country_id,

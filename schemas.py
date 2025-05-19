@@ -2,6 +2,7 @@ from flask_marshmallow import Marshmallow
 from marshmallow import validate
 from models import Country, Language
 
+#Inicializamos Marshmallow
 ma = Marshmallow()
 
 class CountrySchema(ma.SQLAlchemySchema):

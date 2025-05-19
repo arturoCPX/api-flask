@@ -2,14 +2,16 @@ from flask import Flask, request, jsonify
 from models import db, Country, Language
 from schemas import ma, CountrySchema, LanguageSchema
 
+#Configuracion de flask y SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///countries.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#Inicializamos la bd y seriamos marshmellow
 db.init_app(app)
 ma.init_app(app)
 
-# Crear la base de datos y agregar datos de ejemplo
+# Crear la base de datos y verifica
 @app.before_request
 def create_tables():
     with app.app_context():
@@ -22,7 +24,7 @@ def create_tables():
             db.session.add(Language(language="Español"))
             db.session.commit()
 
-# --- Rutas para Country ---
+#rutas cuntries
 country_schema = CountrySchema()
 countries_schema = CountrySchema(many=True)
 
@@ -66,7 +68,7 @@ def delete_country(id):
     db.session.commit()
     return '', 204
 
-# --- Rutas para Language ---
+#rutas language
 language_schema = LanguageSchema()
 languages_schema = LanguageSchema(many=True)
 
@@ -109,7 +111,7 @@ def delete_language(id):
     db.session.commit()
     return '', 204
 
-# Ruta de prueba
+#Ruta default
 @app.route('/')
 def hello():
     return "<h1>API de Countries y Languages</h1>"
